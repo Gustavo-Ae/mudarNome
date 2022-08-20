@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [nome, setNome] = useState([""]);
+
+  const [titulo, setTitulo] = useState("Mostrar Nome")
+
+  const handleMostrarNome = () => {
+
+    setNome((nome) => {
+      console.log(nome)
+      if(nome == ""){
+        setTitulo("Ocultar Nome")
+        return ["Gustavo Araujo"]   
+      }else{
+        ocultarNome();
+      }
+    })
+  }
+
+  const ocultarNome = () => {
+    setTitulo("Mostrar Nome")
+    setNome([""])
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1>{nome}</h1>
+        <button className='btn' onClick={handleMostrarNome}>{titulo}</button>
     </div>
   );
 }
